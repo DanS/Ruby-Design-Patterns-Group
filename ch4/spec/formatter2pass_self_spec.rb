@@ -1,5 +1,5 @@
 require "spec_helper"
-require "formatter"
+require "formatter2pass_self"
 
 class FakeIO
   attr_reader :text
@@ -7,7 +7,7 @@ class FakeIO
   def puts(str); @text += str + "\n"; end
 end
 
-describe "Report Original formatter" do
+describe "Report formatter passed reference to self" do
   before(:each) do
     @messenger = mock("messenger").as_null_object
     @tags = %w(<html> </html> <head> </head> <body> </body> <title> </title> <p> </p>)
