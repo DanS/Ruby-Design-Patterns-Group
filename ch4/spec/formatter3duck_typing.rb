@@ -1,13 +1,13 @@
 require "spec_helper"
-require "formatter2pass_self"
+require "formatter3duck_typing"
 
-class FakeIO  
+class FakeIO
   attr_reader :text
   def initialize; @text = ''; end
   def puts(str); @text += str + "\n"; end
 end
 
-describe "Report formatter passed reference to self" do
+describe "Report formatter duck typing" do
   before(:each) do
     @messenger = mock("messenger").as_null_object
     @tags = %w(<html> </html> <head> </head> <body> </body> <title> </title> <p> </p>)
