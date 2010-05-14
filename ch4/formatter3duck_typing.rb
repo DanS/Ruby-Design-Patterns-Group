@@ -1,5 +1,5 @@
 
-class Report
+class Report3
   attr_reader :title, :text
   attr_accessor :formatter
 
@@ -15,7 +15,10 @@ class Report
 end
 
 
-class HTMLFormatter 
+class HTMLFormatter3
+  def initialize(messenger)
+    @messenger = messenger
+  end
   def output_report( context )
     @messenger.puts('<html>')
     @messenger.puts('  <head>')
@@ -30,7 +33,10 @@ class HTMLFormatter
   end
 end
 
-class PlainTextFormatter 
+class PlainTextFormatter3
+  def initialize(messenger)
+    @messenger = messenger
+  end
   def output_report( context)
     @messenger.puts("***** #{context.title} *****")
     context.text.each do |line|

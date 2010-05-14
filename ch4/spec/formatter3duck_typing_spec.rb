@@ -1,5 +1,5 @@
 require "spec_helper"
-require "formatter3duck_typing"
+require "formatter3duck_typing.rb"
 
 class FakeIO
   attr_reader :text
@@ -16,19 +16,19 @@ describe "Report formatter duck typing" do
   context "HTML format" do  
     it "should have a title with tags" do
       @messenger.should_receive(:puts).with(/<title>Monthly Report<\/title>/)
-      report = Report.new(HTMLFormatter.new(@messenger))
+      report = Report3.new(HTMLFormatter3.new(@messenger))
       report.output_report
     end
     it "should have all the tags" do
       output = FakeIO.new
-      Report.new(HTMLFormatter.new(output)).output_report
+      Report3.new(HTMLFormatter3.new(output)).output_report
       @tags.each do |tag|
         output.text.should =~ /#{tag}/
       end
     end
     it "should have the body wrapped in p tags" do
       output = FakeIO.new
-      Report.new(HTMLFormatter.new(output)).output_report
+      Report3.new(HTMLFormatter3.new(output)).output_report
       @body.each do |line|
         output.text.should match(/<p>#{line}<\/p>/)
       end
@@ -38,16 +38,16 @@ describe "Report formatter duck typing" do
     it "should not have HTML tags" do
       @tags.each do |tag|
         @messenger.should_not_receive(:puts).with(/#{tag}/)
-        Report.new(PlainTextFormatter.new(@messenger)).output_report
+        Report3.new(PlainTextFormatter3.new(@messenger)).output_report
       end
     end
     it "should have title surrounded by asterisks" do
       @messenger.should_receive(:puts).with("***** Monthly Report *****")
-      Report.new(PlainTextFormatter.new(@messenger)).output_report
+      Report3.new(PlainTextFormatter3.new(@messenger)).output_report
     end
     it "should have the body text" do
       output = FakeIO.new
-      Report.new(PlainTextFormatter.new(output)).output_report
+      Report3.new(PlainTextFormatter3.new(output)).output_report
       output.text.should =~ /Things are going\nreally, really well\./
     end
   end

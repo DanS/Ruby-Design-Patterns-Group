@@ -7,7 +7,7 @@ class Formatter
   end
 end
 
-class HTMLFormatter < Formatter
+class HTMLFormatter2 < Formatter
   def output_report( context )
     @messenger.puts('<html>')
     @messenger.puts('  <head>')
@@ -22,7 +22,7 @@ class HTMLFormatter < Formatter
   end
 end
 
-class PlainTextFormatter < Formatter
+class PlainTextFormatter2 < Formatter
   def output_report( context)
     @messenger.puts("***** #{context.title} *****")
     context.text.each do |line|
@@ -31,7 +31,7 @@ class PlainTextFormatter < Formatter
   end
 end
 
-class Report
+class Report2
   attr_reader :title, :text
   attr_accessor :formatter
   def initialize(formatter)
